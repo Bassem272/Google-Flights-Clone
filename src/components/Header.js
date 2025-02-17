@@ -28,7 +28,7 @@ const Header = () => {
         }}
       >
         <Image
-          src="/airport.svg"
+          src="/Airport.svg"
           alt="People pointing at a high-flying plane"
           layout="fill"
           objectFit="contain"
