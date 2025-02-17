@@ -1,40 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
 
-## Getting Started
+# **Google Flights Clone** ✈️  
 
-First, run the development server:
+## **Overview**  
+This project is a **Google Flights clone** that enables users to search for flights, apply filters, and explore real-time flight options. It integrates **city auto-completion**, **filtering options**, and **flight search capabilities** using the **Air Scraper API** to fetch live flight data.  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The UI is built with **Material UI**, ensuring a modern, responsive, and intuitive user experience.  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## **Key Features**  
+✅ **City Auto-Completion** – Users can quickly select departure and destination cities using an API-powered auto-complete search.  
+✅ **Flight Search Engine** – Fetches real-time flight data using the **Air Scraper API**.  
+✅ **Advanced Filters** – Users can refine searches based on price, airlines, layovers, departure time, and more.  
+✅ **Material UI Design** – Clean, responsive UI components for a smooth booking experience.  
+✅ **Dark Mode Support** – Provides a visually appealing experience with light/dark mode options.  
+✅ **Real-Time Data** – Ensures up-to-date flight availability and pricing.  
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+---
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+## **Tech Stack**  
+- **Frontend:** Next.js / React.js, **Material UI** (MUI) for styling and components.  
+- **Backend:** Node.js / Express.js (or Firebase Functions).  
+- **APIs Used:**  
+  - **City Autocomplete API** (e.g., Amadeus, Skyscanner, or Google Places API).  
+  - **Air Scraper API** (for real-time flight search results).  
+- **Database:** Firestore (optional for storing user searches).  
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## **How It Works**  
+1️⃣ **Users enter departure and destination cities** (with auto-complete assistance).  
+2️⃣ **Filters are applied** (date, price, airlines, layovers, etc.).  
+3️⃣ **Flight options are fetched** using the **Air Scraper API**.  
+4️⃣ **Results are displayed in a Material UI-designed interface.**  
+5️⃣ **Users can save favorite flights** (if authentication is added).  
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## **Future Enhancements**  
+🚀 **User Authentication** – Allow users to save searches and set price alerts.  
+🚀 **Booking System** – Redirect users to airline websites for ticket purchases.  
+🚀 **Price Prediction** – Use AI to predict the best time to book flights.  
+🚀 **Progress Indicators** – Enhance user experience with Material UI's loading spinners.  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
