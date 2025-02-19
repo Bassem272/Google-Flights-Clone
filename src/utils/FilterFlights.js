@@ -2,7 +2,6 @@ export const filterFlights = (flights, filters) => {
   return flights.filter((flight) => {
     const flightPrice = flight.price?.raw || 0;
     if (flightPrice < filters.minPrice || flightPrice > filters.maxPrice) {
-      console.log("Excluded due to price:", flight);
       return false;
     }
 
@@ -10,7 +9,6 @@ export const filterFlights = (flights, filters) => {
       const hasMatchingStops =
         flight.legs?.every((leg) => leg.stopCount === filters.stops) || false;
       if (!hasMatchingStops) {
-        console.log("Excluded due to stops:", flight);
         return false;
       }
     }
@@ -21,15 +19,6 @@ export const filterFlights = (flights, filters) => {
         const departureHour = parseInt(
           firstLeg.departure.split("T")[1].split(":")[0],
           10
-        );
-
-        console.log(
-          "First Leg Departure Time:",
-          firstLeg.departure,
-          "Extracted Departure Hour:",
-          departureHour,
-          "Applied Filter:",
-          filters.departureTime
         );
 
         switch (filters.departureTime) {

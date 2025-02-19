@@ -24,7 +24,6 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { airlinesList } from "../utils/AirLines";
 
 const Filters = ({ filters, onFilterChange }) => {
-  console.log("Filtersbbbbbbbbbbbb", filters);
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const [visibleFilterIndex, setVisibleFilterIndex] = useState(0);
@@ -48,13 +47,7 @@ const Filters = ({ filters, onFilterChange }) => {
   };
 
   const handleStopsChange = (stopValue) => {
-    console.log("Before update:", filters.stops);
-
     onFilterChange({ ...filters, stops: stopValue });
-
-    setTimeout(() => {
-      console.log("After update (delayed log):", filters.stops);
-    }, 0);
   };
 
   const handleDepartureTimeChange = (timeRange) => {
@@ -70,7 +63,6 @@ const Filters = ({ filters, onFilterChange }) => {
       timeKey = "night";
     }
 
-    console.log("Selected Departure Time Filter:", timeKey);
     onFilterChange({ ...filters, departureTime: timeKey });
   };
 
@@ -107,12 +99,6 @@ const Filters = ({ filters, onFilterChange }) => {
   ];
 
   const isPopoverOpen = (filter) => Boolean(anchorEl[filter]);
-  useEffect(() => {
-    console.log(
-      "filters)))))))))))))))))))))))))))))))))))))))))))))))))))))))))stops changed:",
-      filters.stops
-    );
-  }, [filters.stops]);
 
   return (
     <Box sx={{ p: 2, border: "1px solid #ddd", borderRadius: 2, mt: 2 }}>
