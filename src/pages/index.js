@@ -21,6 +21,7 @@ const Home = () => {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [hasSearched, setHasSearched] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
 
   const handleSearch = async (searchParams) => {
     setFlights([]);
@@ -32,10 +33,18 @@ const Home = () => {
       const flightData = await fetchFlights(searchParams);
       setFlights(flightData);
       setLoadingProgress(100);
+      if (flightData.length === 0) {
+        setShowFilters(false);
+      } else {
+        setShowFilters(true);
+      }
+    } catch (error) {
+      console.error("Fetch failed:", error);
+      setFlights([]);
+      setShowFilters(false);
+    } finally {
       setTimeout(() => setIsLoading(false), 500);
       localStorage.setItem("searchParams", JSON.stringify(searchParams));
-    } catch (error) {
-      setIsLoading(false);
     }
   };
 
@@ -49,7 +58,6 @@ const Home = () => {
       maxDuration: Infinity,
     });
   };
-  const [showFilters, setShowFilters] = useState(false);
   const filteredFlights = filterFlights(flights, filters);
   useEffect(() => {
     if (filteredFlights.length > 0) {

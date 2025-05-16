@@ -18,8 +18,8 @@ import { format } from "date-fns";
 import FlightOptions from "./FlightOptions";
 import { fetchSkyID } from "../utils/ApiService";
 import { fetchCities } from "../utils/ApiCity";
-import { CalendarToday } from "@mui/icons-material";
 import { useRef } from "react";
+import CustomAlert from "./CustomAlert";
 
 const usePrevious = (value) => {
   const ref = useRef();
@@ -51,6 +51,9 @@ const SearchForm = ({ onSearch }) => {
   const [flightClass, setFlightClass] = useState("economy");
   const [hasSearched, setHasSearched] = useState(false);
 
+  const [errorOpen, setErrorOpen] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
   const searchParams = useMemo(() => {
     return {
       fromSkyID,
@@ -80,13 +83,16 @@ const SearchForm = ({ onSearch }) => {
   const prevSearchParams = usePrevious(searchParams);
 
   const handleSearch = () => {
-    setLoading(true);
-    setHasSearched(true);
-
+    
     if (!fromSkyID || !toSkyID) {
       console.error("Missing SkyID for one or both cities. Please try again.");
+      setErrorMsg("❌ One or both cities are invalid. Please enter valid city names.");
+      setErrorOpen(true);
+      // setLoading(false);
       return;
     }
+    setLoading(true);
+    setHasSearched(true);
 
     const delayDebounceFn = setTimeout(() => {
       onSearch(searchParams);
@@ -99,7 +105,7 @@ const SearchForm = ({ onSearch }) => {
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (from) fetchSkyID(from, setFromSkyID, setFromSkyEntity);
-    }, 500);
+    }, 2000);
 
     return () => clearTimeout(delayDebounceFn);
   }, [from]);
@@ -107,7 +113,7 @@ const SearchForm = ({ onSearch }) => {
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (to) fetchSkyID(to, setToSkyID, setToSkyEntity);
-    }, 500);
+    }, 2500);
 
     return () => clearTimeout(delayDebounceFn);
   }, [to]);
@@ -265,7 +271,14 @@ const SearchForm = ({ onSearch }) => {
           ) : null}
         </Grid>
       </Grid>
+         <CustomAlert
+        open={errorOpen}
+        handleClose={() => setErrorOpen(false)}
+        message={errorMsg}
+      />
     </Container>
+
+    
   );
 };
 

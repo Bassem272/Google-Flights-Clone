@@ -61,8 +61,14 @@ export const fetchFlights = async (searchParams, isReturnPage = false) => {
         },
       });
     }
+    const itineraries = response?.data?.data?.itineraries;
 
-    return response.data.data.itineraries;
+    if (!Array.isArray(itineraries) || itineraries.length === 0) {
+      console.warn("No itineraries found.");
+      return [];
+    }
+
+    return itineraries;
   } catch (error) {
     console.error("Error fetching flight data:", error);
     throw error;

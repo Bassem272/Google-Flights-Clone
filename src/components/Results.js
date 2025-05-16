@@ -28,11 +28,18 @@ const Results = ({ flights, hasSearched }) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
 
+useEffect(() => {
+    if (hasSearched) {
+      setLoading(true); 
+    }
+  }, [hasSearched]);
+
   useEffect(() => {
-    if (flights && flights.length > 0) {
+
+    if (hasSearched) {
       setLoading(false);
     }
-  }, [flights]);
+  }, [flights, hasSearched]);
 
   if (!hasSearched) return null;
 
@@ -51,7 +58,8 @@ const Results = ({ flights, hasSearched }) => {
     );
   }
 
-  if (!flights || flights.length === 0) {
+  console.log("lenghtyyyyyyyyyyyyyy", flights.length);
+  if (flights.length === 0) {
     return (
       <Box
         sx={{
